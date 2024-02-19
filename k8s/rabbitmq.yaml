@@ -16,12 +16,12 @@ spec:
         - name: rabbitmq
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_34487bad18ad # 여기에 커스텀 이미지 경로를 넣으세요.
           env:
-            - name: RABBIT_USER
+            - name: RABBITMQ_DEFAULT_USER
               valueFrom:
                 secretKeyRef:
                   name: rabbitmq-secret
                   key: username
-            - name: RABBIT_PASS
+            - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
                 secretKeyRef:
                   name: rabbitmq-secret
