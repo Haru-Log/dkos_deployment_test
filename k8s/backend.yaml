@@ -104,7 +104,7 @@ spec:
               memory: 1Gi
           readinessProbe:
             httpGet:
-              path: /
+              path: /api
               port: 8080
 ---
 apiVersion: v1
