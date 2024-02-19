@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: todo
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_8989def463d9
           env:
             - name: TZ
               value: Asia/Seoul
@@ -23,25 +23,88 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: db-url
-
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: db-username
-
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: db-secret
                   key: db-password
 
+            # RabbitMQ 환경 변수 추가 시작
+            - name: RABBITMQ_HOST
+              value: rabbitmq  # RabbitMQ 서비스 이름 사용
+            - name: RABBITMQ_PORT
+              value: "5672"  # RabbitMQ 기본 AMQP 포트
+            - name: RABBITMQ_MANAGEMENT_PORT
+              value: "15672" # RabbitMQ Management 포트 (todo: 앱 배포 시 삭제)
+            - name: RABBITMQ_STOMP_PORT
+              value: "61613" # RabbitMQ STOMP 포트
+            - name: RABBIT_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: host
+            - name: RABBIT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: username
+            - name: RABBIT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: password
+
+            - name: JWT_SIGN
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: jwt-sign
+            - name: ACCESS_EXPIRATION
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: access-expiration
+            - name: REFRESH_EXPIRATION
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: refresh-expiration
+            - name: COOKIE_EXPIRATION
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: cookie-expiration
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oauth-secret
+                  key: client-id
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oauth-secret
+                  key: client-secret
+            - name: REDIRECT_URI
+              valueFrom:
+                secretKeyRef:
+                  name: oauth-secret
+                  key: redirect-uri
+            - name: FIREBASE_ADMIN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: firebase-secret
+                  key: firebase-admin-key
           resources:
             requests:
               memory: 1Gi
           readinessProbe:
             httpGet:
-              path: /api
+              path: /
               port: 8080
 ---
 apiVersion: v1

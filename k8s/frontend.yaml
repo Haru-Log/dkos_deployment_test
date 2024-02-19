@@ -14,7 +14,18 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: todo
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_4f196822b589:latest
+          env:
+            - name: REACT_APP_SHARE_KAKAO_LINK_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: front-kakao
+                  key: kakao-link-key
+            - name: REACT_APP_BACKEND_DEPLOY
+              valueFrom:
+                secretKeyRef:
+                  name: front-kakao
+                  key: backend-deploy
 ---
 apiVersion: v1
 kind: Service
