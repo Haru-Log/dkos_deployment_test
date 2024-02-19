@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_d2333038422f # 여기에 커스텀 이미지 경로를 넣으세요.
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_34487bad18ad # 여기에 커스텀 이미지 경로를 넣으세요.
           env:
             - name: RABBIT_USER
               valueFrom:
