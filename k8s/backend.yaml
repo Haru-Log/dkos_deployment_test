@@ -99,6 +99,11 @@ spec:
                 secretKeyRef:
                   name: firebase-secret
                   key: firebase-admin-key
+            - name: DEPLOY_URL
+              valueFrom:
+                secretKeyRef:
+                  name: deploy-url
+                  key: deploy-domain
           resources:
             requests:
               memory: 1Gi
