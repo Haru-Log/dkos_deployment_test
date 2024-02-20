@@ -99,6 +99,11 @@ spec:
                 secretKeyRef:
                   name: firebase-secret
                   key: firebase-admin-key
+            - name: FIREBASE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: firebase-secret
+                  key: bucket-name
             - name: DEPLOY_URL
               valueFrom:
                 secretKeyRef:
