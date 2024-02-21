@@ -50,7 +50,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: front-env
-                  key: harulogtest.appspot.com
+                  key: fb-bucket
             - name: REACT_APP_FIREBASE_MESSAGING_SENDER_ID
               valueFrom:
                 secretKeyRef:
